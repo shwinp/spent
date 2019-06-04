@@ -44,8 +44,8 @@ while True:
         ):
           if addstring[0:1] not in ('-','+'):
                addstring = '+' + addstring
-          dadata = sheet.cell(rownum, 5).input_value
-          sheet.update_cell(rownum, 5, dadata + addstring)
+          dadata = sheet.acell('E' + rownum, value_render_option='FORMULA')
+          sheet.update_acell('E' + rownum, dadata + addstring)
 
           istransfer = input("Init Transfer to Visa (y/N)?")
           if istransfer == "y":
