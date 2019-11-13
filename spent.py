@@ -34,15 +34,25 @@ sheet = client.open("General Budget Per Paycheck").sheet1
 
 
 while True:
-     addmode = input('Mode ([f]ood,[g]as,[m]isc,[b]alance,e[X]it)? ')
+     addmode = input('Mode ([f]ood,[g]as,[m]isc,[b]alance,[fw]ise,[mw]ise,e[X]it)? ')
      if addmode == 'f':
           rownum = 4 
+          colnum = 'E'
      elif addmode == 'g':
           rownum = 6
+          colnum = 'E'
      elif addmode == 'm':
           rownum = 7
+          colnum = 'E'
      elif addmode == 'b':
           rownum = -1
+          colnum = 'E'
+     elif addmode == 'fw':
+          rownum = 3
+          colnum = 'K'
+     elif addmode == 'mw':
+          rownum = 3
+          colnum = 'J'
      else:
           addmode = 'x'
           rownum = -1
@@ -58,13 +68,14 @@ while True:
         ):
           if addstring[0:1] not in ('-','+'):
                addstring = '+' + addstring
-          dadata = sheet.acell(str("E" + str(rownum)), value_render_option='FORMULA').value
+          dadata = sheet.acell(str(str(colnum) + str(rownum)), value_render_option='FORMULA').value
           if len(dadata.strip()) == 0:
               dadata = "=0"
-          sheet.update_acell(str("E" + str(rownum)), str(str(dadata) + str(addstring)))
+          sheet.update_acell(str(str(colnum) + str(rownum)), str(str(dadata) + str(addstring)))
 
-          davalue = sheet.acell(str("G" + str(rownum)), value_render_option='UNFORMATTED_VALUE').value
-          if davalue < 0:
+          if addmode in ["f","g","m"]: 
+            davalue = sheet.acell(str("G" + str(rownum)), value_render_option='UNFORMATTED_VALUE').value
+            if davalue < 0:
               sheet.update_acell(str("G" + str(rownum)), "0")
 
           #istransfer = input("Init Transfer to Visa (y/N)?")
