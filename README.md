@@ -1,2 +1,2 @@
 # spent
-Android Python Google Sheets with SMS integration
+Budget tracking using Android Python Google Sheets with SMS integration
