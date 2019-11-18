@@ -34,7 +34,7 @@ sheet = client.open("General Budget Per Paycheck").sheet1
 
 
 while True:
-     addmode = input('Mode ([f]ood,[g]as,[m]isc,[b]alance,[fw]ise,[mw]ise,e[X]it)? ')
+     addmode = input('Mode ([f]ood,[g]as,[m]isc,[b]alance,[fw]ise,[mw]ise,[fm]art,[mm]art,e[X]it)? ')
      if addmode == 'f':
           rownum = 4 
           colnum = 'E'
@@ -52,6 +52,12 @@ while True:
           colnum = 'K'
      elif addmode == 'mw':
           rownum = 3
+          colnum = 'J'
+     elif addmode == 'fm':
+          rownum = 7
+          colnum = 'K'
+     elif addmode == 'mm':
+          rownum = 7
           colnum = 'J'
      else:
           addmode = 'x'
